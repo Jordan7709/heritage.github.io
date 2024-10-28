@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Héritage - Luxe et Écoresponsabilité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables CSS */
+        :root {
+            --primary-color: #111;
+            --secondary-color: #F0ECE4;
+            --text-color: #555;
+            --spacing-unit: 1rem;
+        }
+
+        /* Style général */
+        body {
+            background-image: url('fond.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Bandeau supérieur */
+        .top-banner {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            padding: var(--spacing-unit);
+            text-align: center;
+            letter-spacing: 0.1rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: clamp(1rem, 4vw, 2rem) 0;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            color: var(--primary-color);
+        }
+
+        header p {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-top: 0.5rem;
+        }
+
+        /* Navigation mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: var(--spacing-unit);
+        }
+
+        /* Barre de navigation */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: var(--spacing-unit);
+            border-top: 1px solid var(--secondary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .navbar a {
+            font-family: 'Playfair Display', serif;
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        /* Sections de contenu */
+        .content-section {
+            padding: clamp(1rem, 4vw, 3rem);
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+        }
+/* Styles additionnels pour le contenu */
+.content-wrapper {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.home-image {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.section-description {
+    text-align: center;
+    margin: 1rem 0 2rem;
+    font-family: 'Merriweather', serif;
+}
+
+.mission-content {
+    display: flex;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem 0;
+}
+
+.mission-image {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.mission-text {
+    flex: 1;
+}
+
+.mission-text ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.mission-text li {
+    margin: 0.5rem 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .content-wrapper,
+    .mission-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mission-text ul {
+        text-align: left;
+    }
+
+    .footer-links {
+        gap: 1rem;
+    }
+}
+        /* Grille de produits */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: var(--spacing-unit);
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: var(--spacing-unit);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: var(--spacing-unit);
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .navbar a {
+                display: block;
+                padding: 1rem;
+            }
+
+            #home-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .home-text {
+                margin-top: var(--spacing-unit);
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .top-banner {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .product-card {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="top-banner">
+        LIVRAISON GRATUITE, PAIEMENT SÉCURISÉ, SERVICE CLIENT DISPONIBLE
+    </div>
+
+    <header>
+        <h1>HERITAGE</h1>
+        <p>La Fusion du Luxe et de l'Écoresponsabilité</p>
+    </header>
+
+    <nav class="navbar">
+        <button class="mobile-menu-btn">☰</button>
+        <ul class="nav-links">
+            <li><a href="#home-content">Accueil</a></li>
+            <li><a href="#bagues-content">Bagues</a></li>
+            <li><a href="#bracelets-content">Bracelets</a></li>
+            <li><a href="#colliers-content">Colliers</a></li>
+            <li><a href="#boucles-content">Boucles d'oreilles</a></li>
+            <li><a href="#mission-content">Notre mission</a></li>
+        </ul>
+    </nav>
+
+<!-- Contenu principal avec toutes les sections -->
+<!-- Section Accueil -->
+<section id="home-content" class="content-section">
+    <div class="content-wrapper">
+        <img src="accueil.png" alt="Image produit écoresponsable" class="home-image" />
+        <div class="home-text">
+            <h2>BIJOUX ÉCORESPONSABLES</h2>
+            <p>Redéfinir le luxe en créant des bijoux à partir de verres de lunettes recyclés, pour répondre à la demande croissante de produits éthiques et durables chez une clientèle responsable.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Section Bagues -->
+<section id="bagues-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
+    <div class="section-container">
+        <div class="bague-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Bagues</h2>
+            <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
+                Découvrez notre collection de bagues en verre recyclé, pour un style unique et écoresponsable.
+            </p>
+        <div class="product-grid">
+            <!-- Bague 1 -->
+            <div class="product-card">
+                <img src="bague1.png" alt="Bague Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bague Harmonie</h3>
+                    <p class="product-description">Bague en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+
+            <!-- Bague 2 -->
+            <div class="product-card">
+                <img src="bague2.png" alt="Bague Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bague Éternité</h3>
+                    <p class="product-description">Pendentif en verre recyclé teinté, chaîne argent</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Bague 3 -->
+            <div class="product-card">
+                <img src="bague3.png" alt="Bague Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bague Élégance</h3>
+                    <p class="product-description">Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Bracelets -->
+<section id="bracelets-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
+    <div class="section-container">
+        <div class="bracelets-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Bracelets</h2>
+            <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
+                Explorez nos bracelets artisanaux, alliant élégance et durabilité.</p>
+        </div>
+        <div class="product-grid">
+            <!-- Bracelet 1 -->
+            <div class="product-card">
+                <img src="bracelet1.png" alt="Bracelet Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bracelet Harmonie</h3>
+                    <p class="product-description">Bracelet en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+
+            <!-- Bracelet 2 -->
+            <div class="product-card">
+                <img src="bracelet2.png" alt="Bracelet Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bracelet Éternité</h3>
+                    <p class="product-description">Design épuré en verre recyclé teinté</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Bracelet 3 -->
+            <div class="product-card">
+                <img src="bracelet3.png" alt="Bracelet Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bracelet Élégance</h3>
+                    <p class="product-description">Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Colliers -->
+<section id="colliers-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
+    <div class="section-container">
+        <div class="colliers-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Colliers</h2>
+            <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
+                Découvrez nos colliers uniques, créés à partir de matériaux recyclés.</p>
+        </div>
+        <div class="product-grid">
+            <!-- Collier 1 -->
+            <div class="product-card">
+                <img src="collier1.png" alt="Collier Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Harmonie</h3>
+                    <p class="product-description">Collier en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+
+            <!-- Collier 2 -->
+            <div class="product-card">
+                <img src="collier2.png" alt="Collier Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Éternité</h3>
+                    <p class="product-description">Pendentif en verre recyclé teinté</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Collier 3 -->
+            <div class="product-card">
+                <img src="collier3.png" alt="Collier Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Élégance</h3>
+                    <p class="product-description">Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Boucles d'oreilles -->
+<section id="boucles-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
+    <div class="section-container">
+        <div class="boucles-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Boucles d'oreilles</h2>
+            <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
+                Des créations élégantes pour sublimer votre style.</p>
+        </div>     
+        <div class="product-grid">
+            <!-- Boucle 1 -->
+            <div class="product-card">
+                <img src="boucle1.png" alt="Boucles d'oreilles Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Boucles Harmonie</h3>
+                    <p class="product-description">Boucles en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+
+            <!-- Boucle 2 -->
+            <div class="product-card">
+                <img src="boucle2.png" alt="Boucles d'oreilles Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Boucles Éternité</h3>
+                    <p class="product-description">Design épuré en verre recyclé teinté</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Boucle 3 -->
+            <div class="product-card">
+                <img src="boucle3.png" alt="Boucles d'oreilles Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Boucles Élégance</h3>
+                    <p class="product-description">Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Mission -->
+<section id="mission-content" class="content-section">
+    <div class="section-container">
+        <h2>Notre Mission</h2>
+        <div class="mission-content">
+            <img src="mission.png" alt="Notre engagement écoresponsable" class="mission-image">
+            <div class="mission-text">
+                <p>Chez Héritage, nous nous engageons à redéfinir l'industrie du luxe en créant des bijoux exceptionnels à partir de matériaux recyclés. Notre mission est de :</p>
+                <ul>
+                    <li>Réduire l'impact environnemental de l'industrie joaillière</li>
+                    <li>Transformer des déchets en œuvres d'art portables</li>
+                    <li>Sensibiliser à la consommation responsable</li>
+                    <li>Prouver que luxe et durabilité peuvent coexister</li>
+                </ul>
+                <p>Chaque pièce que nous créons raconte une histoire de transformation et d'engagement envers un avenir plus durable.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 Héritage. Tous droits réservés.</p>
+        <p>Devenez partenaire de la révolution du luxe éthique avec "Héritage".</p>
+    </div>
+</footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Cache toutes les sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active');
+            });
+            
+            // Affiche la section demandée
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+                activeSection.classList.add('active');
+            }
+            
+            // Met à jour les liens de navigation
+            const navLinks = document.querySelectorAll('.navbar a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(sectionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Affiche la section d'accueil par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home-content');
+            
+            // Ajoute les écouteurs d'événements pour la navigation
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('href').replace('#', '');
+                    showSection(sectionId);
+                });
+            });
+        });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Menu mobile
+                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                const navLinks = document.querySelector('.nav-links');
+    
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+    
+                // Navigation
+                function showSection(sectionId) {
+                    const sections = document.querySelectorAll('.content-section');
+                    const navLinks = document.querySelectorAll('.navbar a');
+    
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+    
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+    
+                    const activeSection = document.getElementById(sectionId);
+                    const activeLink = document.querySelector(`a[href="#${sectionId}"]`);
+    
+                    if (activeSection) {
+                        activeSection.classList.add('active');
+                    }
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+    
+                    // Ferme le menu mobile après la sélection
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+    
+                // Gestionnaire d'événements pour les liens de navigation
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const sectionId = this.getAttribute('href').replace('#', '');
+                        showSection(sectionId);
+                    });
+                });
+    
+                // Affiche la section d'accueil par défaut
+                showSection('home-content');
+            });
+        </script>
+
+</body>
+</html>
