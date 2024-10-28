@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colliers - Héritage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Copiez tout le CSS de votre page index.html ici */
+        /* Ajoutez ces styles spécifiques pour la grille de produits */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+        .page-title {
+            text-align: center;
+            padding: 2rem 0;
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bandeau supérieur -->
+    <div class="top-banner">
+        LIVRAISON GRATUITE, PAIEMENT SÉCURISÉ, SERVICE CLIENT DISPONIBLE
+    </div>
+
+    <!-- En-tête avec le titre et la mission -->
+    <header>
+        <h1>HERITAGE</h1>
+        <p>La Fusion du Luxe et de l'Écoresponsabilité</p>
+    </header>
+
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <a href="index.html">Accueil</a>
+        <a href="colliers.html">Colliers</a>
+        <a href="bracelets.html">Bracelets</a>
+        <a href="bagues.html">Bagues</a>
+        <a href="mission.html">Notre mission</a>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main>
+        <h2 class="page-title">Notre Collection de Colliers</h2>
+        <div class="product-grid">
+            <!-- Produit 1 -->
+            <div class="product-card">
+                <img src="/api/placeholder/250/250" alt="Collier Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Harmonie</h3>
+                    <p>Collier en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+
+            <!-- Produit 2 -->
+            <div class="product-card">
+                <img src="/api/placeholder/250/250" alt="Collier Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Éternité</h3>
+                    <p>Pendentif en verre recyclé teinté, chaîne argent</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="product-card">
+                <img src="/api/placeholder/250/250" alt="Collier Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Élégance</h3>
+                    <p>Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2024 Héritage. Tous droits réservés.</p>
+        <p>Devenez partenaire de la révolution du luxe éthique avec "Héritage".</p>
+    </footer>
+</body>
+</html>

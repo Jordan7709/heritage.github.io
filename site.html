@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Héritage - Luxe et Écoresponsabilité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Style général */
+
+        body {
+            background-image: url('fond.png'); /* Remplacez par le lien de votre image */
+            background-size: cover; /* Couvre tout l'écran */
+            background-repeat: no-repeat; /* Empêche la répétition */
+            background-attachment: fixed; /* Fixe l'image lors du défilement */
+            background-position: center; /* Centrage de l'image */
+            color: #333; /* Contraste adapté avec l'image */
+        }
+
+        /* Bandeau supérieur */
+        .top-banner {
+            background-color: #111;
+            color: #F0ECE4;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            text-align: center;
+            letter-spacing: 0.1rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background-image: url('fond.png'); /* Remplacez par le lien de votre image */
+            background-size: cover; /* Couvre tout l'écran */
+            background-repeat: no-repeat; /* Empêche la répétition */
+            background-attachment: fixed; /* Fixe l'image lors du défilement */
+            background-position: center; /* Centrage de l'image */
+            color: #333; /* Contraste adapté avec l'image */
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            color: #111;
+            margin: 0;
+        }
+        header p {
+            font-family: 'Merriweather', serif;
+            font-size: 1.2rem;
+            color: #555;
+            margin: 0.5rem 0 0;
+        }
+
+        /* Barre de navigation */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #111;
+            padding: 1rem;
+            border-top: 1px solid #F0ECE4;
+            border-bottom: 1px solid #F0ECE4;
+        }
+        .navbar a {
+            font-family: 'Playfair Display', serif;
+            margin: 0 1.5rem;
+            text-decoration: none;
+            color: #F0ECE4;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #F0ECE4;
+        }
+
+        /* Section d'accueil */
+        #home-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+        #home-content img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .home-text {
+            max-width: 600px;
+        }
+        .home-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .home-text p {
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        /* Section Colliers */
+        #colliers-content {
+            display: none; /* Masqué par défaut */
+            padding: 3rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #colliers-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #111;
+        }
+        #colliers-content p {
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: #111;
+            color: #F0ECE4;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Styles pour le contenu */
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+            flex-wrap: wrap;
+}
+
+        .hidden {
+            display: none !important;
+}
+
+        /* Style pour le lien actif dans la navigation */
+        .navbar a.active {
+            color: #F0ECE4;
+            border-bottom: 2px solid #F0ECE4;
+            padding-bottom: 3px;
+}
+/* Styles pour les sections */
+.content-section {
+    display: none;
+    padding: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Animation de transition */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Réduit la taille minimale de 250px à 200px */
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    max-width: 300px; /* Limite la largeur maximale */
+    margin: 0 auto;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    height: 210px; /* Réduit la hauteur de 250px à 180px */
+    object-fit: cover; /* Garde les proportions de l'image */
+    display: block;
+}
+
+.product-info {
+    padding: 1rem;
+}
+
+.product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; /* Réduit légèrement la taille du titre */
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #333;
+    margin-top: 0.5rem;
+}
+.section-container {
+    width: 100%;
+    text-align: center;
+}
+
+/* Style pour le lien actif dans la navigation */
+.navbar a.active {
+    color: #F0ECE4;
+    border-bottom: 2px solid #F0ECE4;
+    padding-bottom: 3px;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Bandeau supérieur -->
+    <div class="top-banner">
+        LIVRAISON GRATUITE, PAIEMENT SÉCURISÉ, SERVICE CLIENT DISPONIBLE
+    </div>
+
+    <!-- En-tête avec le titre et la mission -->
+    <header>
+        <h1>HERITAGE</h1>
+        <p>La Fusion du Luxe et de l’Écoresponsabilité</p>
+    </header>
+
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <a href="#home-content" onclick="showSection('home-content')">Accueil</a>
+        <a href="#bagues-content" onclick="showSection('bagues-content')">Bagues</a>
+        <a href="#bracelets-content" onclick="showSection('bracelets-content')">Bracelets</a>
+        <a href="#colliers-content" onclick="showSection('colliers-content')">Colliers</a>
+        <a href="#boucles-content" onclick="showSection('boucles-content')">Boucles d'oreilles</a>
+        <a href="#mission-content" onclick="showSection('mission-content')">Notre mission</a>
+    </nav>
+
+<!-- Contenu principal avec toutes les sections -->
+<!-- Section Accueil -->
+<section id="home-content" class="content-section">
+    <div style="display: flex; align-items: center;">
+    <!-- Image de produit -->
+    <img src="accueil.png" alt="Image produit écoresponsable" style="max-width: 500px; border-radius: 10px; margin-right: 2rem;" />
+
+    <!-- Texte explicatif -->
+    <div class="home-text">
+        <h2>BIJOUX ÉCORESPONSABLES</h2>
+        <p>Redéfinir le luxe en créant des bijoux à partir de verres de lunettes recyclés, pour répondre à la demande croissante de produits éthiques et durables chez une clientèle responsable.</p>
+    </div>
+</section>
+
+<!-- Section Bagues -->
+<section id="bagues-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
+    <div class="section-container">
+        <div class="bague-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Bagues</h2>
+            <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
+                Découvrez notre collection de bagues en verre recyclé, pour un style unique et écoresponsable.
+            </p>
+        </div>
+        <div class="product-grid" style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <!-- Produit 1 -->
+            <div class="product-card" style="margin: 1rem;"> <!-- Ajout d'une marge pour espacer les cartes -->
+                <img src="bague1.png" alt="Bague Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bague Harmonie</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> Bague en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+
+            <!-- Produit 2 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="bague2.png" alt="Bague Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bague Éternité</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Pendentif en verre recyclé teinté, chaîne argent</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="bague3.png" alt="Collier Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bague Élégance</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Section Bracelets -->
+<section id="bracelets-content" class="content-section">
+    <div class="section-container">
+        <h2>Notre Collection de Bracelets</h2>
+        <div class="product-grid" style="display: flex; justify-content: center; flex-wrap: wrap;">
+
+            <!-- Produit 1 -->
+            <div class="product-card" style="margin: 1rem;"> <!-- Ajout d'une marge pour espacer les cartes -->
+                <img src="bracelet1.png" alt="Bague Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bracelet Harmonie</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> Bague en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+
+            <!-- Produit 2 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="bracelet2.png" alt="Bague Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Bracelet Éternité</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Pendentif en verre recyclé teinté, chaîne argent</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+            <!-- Produit 3 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="bracelet3.png" alt="Collier Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Élégance</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Colliers -->
+<section id="colliers-content" class="content-section">
+    <div class="section-container">
+        <h2>Notre Collection de Colliers</h2>
+        <div class="product-grid">
+
+            <!-- Produit 1 -->
+            <div class="product-card" style="margin: 1rem;"> <!-- Ajout d'une marge pour espacer les cartes -->
+                <img src="collier1.png" alt="Bague Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Harmonie</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> Bague en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+            <!-- Produit 2 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="collier2.png" alt="Bague Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Éternité</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Pendentif en verre recyclé teinté, chaîne argent</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="collier3.png" alt="Collier Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Élégance</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+    </div>
+</section>
+
+<!-- Section Boucles d'oreilles -->
+<section id="boucles-content" class="content-section">
+    <div class="section-container">
+        <h2>Notre Collection de Boucles d'oreilles</h2>
+        <div class="product-grid">
+            <!-- Produit 1 -->
+            <div class="product-card" style="margin: 1rem;"> <!-- Ajout d'une marge pour espacer les cartes -->
+                <img src="boucle1.png" alt="Bague Harmonie" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Harmonie</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> Bague en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
+                </div>
+            </div>
+            <!-- Produit 2 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="boucle2.png" alt="Bague Éternité" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Éternité</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Pendentif en verre recyclé teinté, chaîne argent</p>
+                    <p class="product-price">159 €</p>
+                </div>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="product-card" style="margin: 1rem;">
+                <img src="boucle3.png" alt="Collier Élégance" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Collier Élégance</h3>
+                    <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> </p>Design minimaliste en verre fumé recyclé</p>
+                    <p class="product-price">129 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Section Mission -->
+<section id="mission-content" class="content-section">
+    <div class="section-container">
+        <h2>Notre Mission</h2>
+        <div class="mission-text">
+            <p>Description de votre mission...</p>
+        </div>
+    </div>
+</section>
+
+    
+
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="section-container">
+        <p>&copy; 2024 Héritage. Tous droits réservés.</p>
+        <p>Devenez partenaire de la révolution du luxe éthique avec "Héritage".</p>
+    </div>
+    </footer>
+
+
+    <script>
+        function showSection(sectionId) {
+            // Cache toutes les sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active');
+            });
+            
+            // Affiche la section demandée
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+                activeSection.classList.add('active');
+            }
+            
+            // Met à jour les liens de navigation
+            const navLinks = document.querySelectorAll('.navbar a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(sectionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Affiche la section d'accueil par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home-content');
+            
+            // Ajoute les écouteurs d'événements pour la navigation
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('href').replace('#', '');
+                    showSection(sectionId);
+                });
+            });
+        });
+        </script>
+
+
+
+</body>
+</html>
