@@ -186,6 +186,21 @@
     text-decoration: underline;
 }
 
+.image-container {
+    overflow: hidden; /* Coupe les débordements */
+}
+
+.image-container img {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: scale(1); /* Taille de base */
+}
+
+.image-container:hover img {
+    transform: scale(1.1); /* Zoom au survol */
+    opacity: 0.8; /* Légère transparence au survol */
+}
+
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .content-wrapper,
@@ -217,6 +232,20 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
+
+        .product-card {
+            overflow: hidden;
+        }
+        
+        .product-card img {
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        
+        .product-card:hover img {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        
 
         .product-image {
             width: 100%;
@@ -327,7 +356,7 @@
 
 <!-- Section Bagues -->
 <section id="bagues-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
-    <div class="section-container">
+    <div class="image-container">
         <div class="bague-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
             <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Bagues</h2>
             <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
@@ -369,7 +398,7 @@
 
 <!-- Section Bracelets -->
 <section id="bracelets-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
-    <div class="section-container">
+    <div class="image-container">
         <div class="bracelets-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
             <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Bracelets</h2>
             <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
@@ -411,7 +440,7 @@
 
 <!-- Section Colliers -->
 <section id="colliers-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
-    <div class="section-container">
+    <div class="image-container">
         <div class="colliers-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
             <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Colliers</h2>
             <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
@@ -453,7 +482,7 @@
 
 <!-- Section Boucles d'oreilles -->
 <section id="boucles-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
-    <div class="section-container">
+    <div class="image-container">
         <div class="boucles-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
             <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de Boucles d'oreilles</h2>
             <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
@@ -495,7 +524,7 @@
 
 <!-- Section Mission -->
 <section id="mission-content" class="content-section">
-    <div class="section-container">
+    <div class="image-container">
         <h2>Notre Mission</h2>
         <div class="mission-content">
             <img src="mission.png" alt="Notre engagement écoresponsable" class="mission-image">
