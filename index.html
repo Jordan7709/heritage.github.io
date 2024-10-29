@@ -302,14 +302,14 @@
     </header>
 
     <nav class="navbar">
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
         <ul class="nav-links">
-            <li><a href="#home-content">Accueil</a></li>
-            <li><a href="#bagues-content">Bagues</a></li>
-            <li><a href="#bracelets-content">Bracelets</a></li>
-            <li><a href="#colliers-content">Colliers</a></li>
-            <li><a href="#boucles-content">Boucles d'oreilles</a></li>
-            <li><a href="#mission-content">Notre mission</a></li>
+            <li><a href="#home-content" onclick="closeMenu()">Accueil</a></li>
+            <li><a href="#bagues-content" onclick="closeMenu()">Bagues</a></li>
+            <li><a href="#bracelets-content" onclick="closeMenu()">Bracelets</a></li>
+            <li><a href="#colliers-content" onclick="closeMenu()">Colliers</a></li>
+            <li><a href="#boucles-content" onclick="closeMenu()">Boucles d'oreilles</a></li>
+            <li><a href="#mission-content" onclick="closeMenu()">Notre mission</a></li>
         </ul>
     </nav>
 
@@ -611,6 +611,20 @@
                 showSection('home-content');
             });
         </script>
+
+        <script>
+        // Fonction pour afficher/masquer le menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Fonction pour fermer le menu mobile après avoir cliqué sur un lien
+        function closeMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('active');
+        }
+    </script>
 
 </body>
 </html>
