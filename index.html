@@ -561,97 +561,17 @@
         });
         </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Menu mobile
-                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-                const navLinks = document.querySelector('.nav-links');
-            
-                mobileMenuBtn.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                });
-            
-                // Navigation
-                function showSection(sectionId) {
-                    const sections = document.querySelectorAll('.content-section');
-                    const navLinks = document.querySelectorAll('.navbar a');
-            
-                    sections.forEach(section => {
-                        section.classList.remove('active');
-                    });
-            
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                    });
-            
-                    const activeSection = document.getElementById(sectionId);
-                    const activeLink = document.querySelector(`a[href="#${sectionId}"]`);
-            
-                    if (activeSection) {
-                        activeSection.classList.add('active');
-                    }
-                    if (activeLink) {
-                        activeLink.classList.add('active');
-                    }
-            
-                    // Ferme le menu mobile après la sélection d'une section
-                    navLinks.classList.remove('active');
-                }
-            
-                // Gestionnaire d'événements pour les liens de navigation
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const sectionId = this.getAttribute('href').replace('#', '');
-                        showSection(sectionId);
-                    });
-                });
-            
-                // Affiche la section d'accueil par défaut
-                showSection('home-content');
-            });
-        </script>
-
-        <script>
-        // Fonction pour afficher/masquer le menu
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
-
-        // Fonction pour fermer le menu mobile après avoir cliqué sur un lien
-        function closeMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.remove('active');
-        }
-    </script>
-
-    <script>
-    // Fonction pour afficher ou masquer une section
-    function toggleSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        
-        // Masquer toutes les sections d'abord
-        document.querySelectorAll('.content-section').forEach((sec) => {
-            if (sec !== section) {
-                sec.classList.remove('active');
-            }
-        });
-        
-        // Activer ou désactiver la section sélectionnée
-        section.classList.toggle('active');
+<script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
     }
 
-    // Attacher les événements de clic aux liens du menu
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêcher le comportement par défaut du lien
-            const sectionId = link.getAttribute('href').substring(1); // Obtenir l'ID de la section
-            toggleSection(sectionId); // Afficher ou masquer la section
-        });
-    });
+    function closeMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.remove('active');
+    }
 </script>
-
 
 </body>
 </html>
