@@ -626,5 +626,32 @@
         }
     </script>
 
+    <script>
+    // Fonction pour afficher ou masquer une section
+    function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        
+        // Masquer toutes les sections d'abord
+        document.querySelectorAll('.content-section').forEach((sec) => {
+            if (sec !== section) {
+                sec.classList.remove('active');
+            }
+        });
+        
+        // Activer ou désactiver la section sélectionnée
+        section.classList.toggle('active');
+    }
+
+    // Attacher les événements de clic aux liens du menu
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Empêcher le comportement par défaut du lien
+            const sectionId = link.getAttribute('href').substring(1); // Obtenir l'ID de la section
+            toggleSection(sectionId); // Afficher ou masquer la section
+        });
+    });
+</script>
+
+
 </body>
 </html>
