@@ -317,10 +317,112 @@
                 max-width: 100%;
             }
         }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            background-color: white;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            background-color: white;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #111;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(17, 17, 17, 0.1);
+            border-top: 2px solid #111;
+            border-radius: 50%;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Style pour le contenu principal */
+        #main-wrapper {
+            opacity: 0;
+            background-color: #F0ECE4;
+            min-height: 100vh;
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Styles pour assurer que la navigation fonctionne */
+        .content-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+        }
     </style>
 
 </head>
 <body>
+
+    <div class="loader-wrapper">
+        <div class="loader-container">
+            <div class="circle"></div>
+            <div class="logo">Héritage</div>
+        </div>
+    </div>
+
+    <div  id="main-wrapper">
+
     <div class="top-banner">
         OFFREZ UNE NOUVELLE VIE À VOS LUNETTES DANS UN GESTE ÉCORESPONSABLE !
     </div>
@@ -366,6 +468,7 @@
     </div>
 </section>
 
+
 <!-- Section Bagues -->
 <section id="bagues-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
     <div class="image-container">
@@ -380,8 +483,8 @@
                 <img src="bague1.png" alt="Bague Harmonie" class="product-image">
                 <div class="product-info">
                     <h3 class="product-title">Bague Harmonie</h3>
-                    <p class="product-description">Bague en verre recyclé, finition plaqué or</p>
-                    <p class="product-price">220 €</p>
+                    <p class="product-description">Bague en verre recyclé, finition plaqué or </p>
+                    <p class="product-price">189 €</p>
                 </div>
             </div>
 
@@ -391,7 +494,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Bague Éternité</h3>
                     <p class="product-description">Bague en verre recyclé teinté, chaîne en acier inoxydable</p>
-                    <p class="product-price">180 €</p>
+                    <p class="product-price">159 €</p>
                 </div>
             </div>
 
@@ -401,7 +504,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Bague Élégance</h3>
                     <p class="product-description">Design minimaliste en verre fumé recyclé</p>
-                    <p class="product-price">150 €</p>
+                    <p class="product-price">129 €</p>
                 </div>
             </div>
         </div>
@@ -423,7 +526,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Bracelet Harmonie</h3>
                     <p class="product-description">Bracelet en verre recyclé, finition plaqué or</p>
-                    <p class="product-price">240 €</p>
+                    <p class="product-price">189 €</p>
                 </div>
             </div>
 
@@ -433,7 +536,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Bracelet Éternité</h3>
                     <p class="product-description">Design épuré en verre recyclé teinté</p>
-                    <p class="product-price">200 €</p>
+                    <p class="product-price">159 €</p>
                 </div>
             </div>
 
@@ -443,7 +546,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Bracelet Élégance</h3>
                     <p class="product-description">Design minimaliste en verre fumé recyclé</p>
-                    <p class="product-price">170 €</p>
+                    <p class="product-price">129 €</p>
                 </div>
             </div>
         </div>
@@ -464,8 +567,8 @@
                 <img src="collier1.png" alt="Collier Harmonie" class="product-image">
                 <div class="product-info">
                     <h3 class="product-title">Collier Harmonie</h3>
-                    <p class="product-description">Collier en verre recyclé, finition plaqué or</p>
-                    <p class="product-price">260 €</p>
+                    <p class="product-description">Collier en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
                 </div>
             </div>
 
@@ -475,7 +578,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Collier Éternité</h3>
                     <p class="product-description">Pendentif en verre recyclé teinté</p>
-                    <p class="product-price">210 €</p>
+                    <p class="product-price">159 €</p>
                 </div>
             </div>
 
@@ -485,7 +588,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Collier Élégance</h3>
                     <p class="product-description">Design minimaliste en verre fumé recyclé</p>
-                    <p class="product-price">180 €</p>
+                    <p class="product-price">129 €</p>
                 </div>
             </div>
         </div>
@@ -496,7 +599,7 @@
 <section id="boucles-content" class="content-section" style="text-align: center;"> <!-- Centrage global de la section -->
     <div class="image-container">
         <div class="boucles-text" style="margin-bottom: 2rem;"> <!-- Espacement en bas -->
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre collection de boucles d'oreilles</h2>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Collection de boucles d'oreilles</h2>
             <p style="font-family: 'Merriweather', serif; font-size: 1rem; color: #555; line-height: 1.6;"> 
                 Des créations élégantes pour sublimer votre style.</p>
         </div>     
@@ -506,8 +609,8 @@
                 <img src="boucle1.png" alt="Boucles d'oreilles Harmonie" class="product-image">
                 <div class="product-info">
                     <h3 class="product-title">Boucles Harmonie</h3>
-                    <p class="product-description">Boucles en verre recyclé, finition plaqué or</p>
-                    <p class="product-price">160 €</p>
+                    <p class="product-description">Boucles en verre recyclé, finition or 18 carats</p>
+                    <p class="product-price">189 €</p>
                 </div>
             </div>
 
@@ -517,7 +620,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Boucles Éternité</h3>
                     <p class="product-description">Design épuré en verre recyclé teinté</p>
-                    <p class="product-price">130 €</p>
+                    <p class="product-price">159 €</p>
                 </div>
             </div>
 
@@ -527,13 +630,14 @@
                 <div class="product-info">
                     <h3 class="product-title">Boucles Élégance</h3>
                     <p class="product-description">Design minimaliste en verre fumé recyclé</p>
-                    <p class="product-price">100 €</p>
+                    <p class="product-price">129 €</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Section Mission -->
 <section id="mission-content" class="content-section">
     <div class="image-container">
         <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #111;">Notre Mission</h2>
@@ -557,12 +661,102 @@
 </section>
 
 
+
+
 <footer>
     <div class="footer-content">
         <p>&copy; 2024 Héritage. Tous droits réservés.</p>
         <p>Devenez partenaire de la révolution du luxe éthique avec "Héritage".</p>
     </div>
 </footer>
+
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.querySelector('.loader-wrapper');
+            const mainContent = document.querySelector('.main-content');
+            
+            // Fait disparaître le loader
+            loader.style.opacity = '0';
+            
+            // Fait apparaître le contenu principal
+            mainContent.style.opacity = '1';
+            mainContent.style.visibility = 'visible';
+            
+            // Retire complètement le loader après la transition
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 250);
+        }, 1500);
+    });
+</script>
+
+
+<script>
+    // Gestionnaire de chargement initial
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.querySelector('.loader-wrapper');
+            const mainWrapper = document.getElementById('main-wrapper');
+            
+            // Fait disparaître le loader
+            loader.style.opacity = '0';
+            
+            // Fait apparaître le contenu principal
+            mainWrapper.style.opacity = '1';
+            
+            // Retire le loader après la transition
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+
+            // Affiche la section d'accueil par défaut
+            showSection('home-content');
+        }, 1000);
+    });
+
+    // Fonction de navigation
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+            section.classList.remove('active');
+        });
+        
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.style.display = 'block';
+            setTimeout(() => {
+                activeSection.classList.add('active');
+            }, 50);
+        }
+    }
+
+    // Gestionnaire du menu mobile
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+    }
+
+    function closeMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.remove('active');
+    }
+
+    // Navigation
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href').replace('#', '');
+                showSection(sectionId);
+                closeMenu();
+            });
+        });
+    });
+</script>
 
     <script>
         function showSection(sectionId) {
